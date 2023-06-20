@@ -11,7 +11,8 @@ document.write('hello yeah');
         });
         // renderer.setClearColor(0x000000, 0);
         var canvas = renderer.domElement;
-         var container = document.getElementById('container'); // Get the container div element
+        var container = document.getElementById('container'); // Get the container div element
+        renderer.setSize($(container).width(), $(container).height());
         container.appendChild(canvas); 
         
         var light = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -45,24 +46,24 @@ document.write('hello yeah');
             base.lookAt(pointOfIntersection);
         }
 
-        renderer.setAnimationLoop(() => {
-            if (resize(renderer)) {
-                camera.aspect = canvas.clientWidth / canvas.clientHeight;
-                camera.updateProjectionMatrix();
-            }
-            renderer.render(scene, camera);
-        });
+        // renderer.setAnimationLoop(() => {
+        //     if (resize(renderer)) {
+        //         camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        //         camera.updateProjectionMatrix();
+        //     }
+        //     renderer.render(scene, camera);
+        // });
 
-        function resize(renderer) {
-            const canvas = renderer.domElement;
-            const width = canvas.clientWidth;
-            const height = canvas.clientHeight;
-            const needResize = canvas.width !== width || canvas.height !== height;
-            if (needResize) {
-                renderer.setSize(width, height, false);
-            }
-            return needResize;
-        }
+        // function resize(renderer) {
+        //     const canvas = renderer.domElement;
+        //     const width = canvas.clientWidth;
+        //     const height = canvas.clientHeight;
+        //     const needResize = canvas.width !== width || canvas.height !== height;
+        //     if (needResize) {
+        //         renderer.setSize(width, height, false);
+        //     }
+        //     return needResize;
+        // }
 
         // Inside the render loop
 
