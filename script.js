@@ -1,4 +1,5 @@
-  import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+console.log('hello yeah');
         import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader";
 
         var scene = new THREE.Scene();
