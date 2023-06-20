@@ -24,8 +24,8 @@
         let base = new THREE.Object3D();
         scene.add(base);
 
-        const loader = new GLTFLoader().setPath('/gltf/');
-        loader.load('cabinetry.gltf', function (gltf) {
+        const loader = new GLTFLoader().setPath('https://uploads-ssl.webflow.com/646dc20061f77e68c17a9199/');
+        loader.load('649131074ac8ef54d6afd9fd_kitchencounter.glb.txt', function (gltf) {
             gltf.scene.scale.setScalar(2);
             base.add(gltf.scene);
         });
