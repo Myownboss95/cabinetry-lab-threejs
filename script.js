@@ -82,14 +82,14 @@ function animate() {
 }
 
 animate();
-renderer.setAnimationLoop(() => {
-  if (resize(renderer)) {
-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    camera.updateProjectionMatrix();
-  }
-  renderer.render(scene, camera);
+// renderer.setAnimationLoop(() => {
+//   if (resize(renderer)) {
+//     camera.aspect = canvas.clientWidth / canvas.clientHeight;
+//     camera.updateProjectionMatrix();
+//   }
+//   renderer.render(scene, camera);
 
   // Console log the model's coordinates
 //   console.log('Model position:', base.position.x, base.position.y, base.position.z);
-});
+// });
 
