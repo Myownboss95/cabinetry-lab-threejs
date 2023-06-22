@@ -1,10 +1,26 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
 // document.write('hello yeah');
-        import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader";
+        // import dat from "https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.js"
 
+         // Adding responsiveness for Three.js
+         // sizes
+         let width = window.innerWidth
+         let height = window.innerHeight
+        //  const gui = new dat.GUI()
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(60, 1, 1, 1000);
-        camera.position.set(0, 0, 5);
+        var camera = new THREE.PerspectiveCamera(60, width/height, 1, 1000);
+        camera.position.set(0, 1, 5);
+        // responsiveness
+         window.addEventListener('resize', () => {
+            width = window.innerWidth
+            height = window.innerHeight
+            camera.aspect = width / height
+            camera.updateProjectionMatrix()
+            renderer.setSize(window.innerWidth, window.innerHeight)
+            renderer.render(scene, camera)
+         })
+        
         var renderer = new THREE.WebGLRenderer({
             antialias: true,
             alpha: true,
@@ -12,7 +28,7 @@ import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
         // renderer.setClearColor(0x000000, 0);
         var canvas = renderer.domElement;
         var container = document.getElementById('container'); // Get the container div element
-        renderer.setSize($(container).width(), $(container).height());
+        // renderer.setSize(container.clientWidth * 0.8, container.clientHeight * 0.8);
         container.appendChild(canvas); 
         
         var light = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -27,11 +43,24 @@ import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
         scene.add(base);
 
         const loader = new GLTFLoader().setPath('https://uploads-ssl.webflow.com/646dc20061f77e68c17a9199/');
-        loader.load('649131074ac8ef54d6afd9fd_kitchencounter.glb.txt', function (gltf) {
-            gltf.scene.scale.setScalar(2);
-            base.add(gltf.scene);
+         loader.load('649131074ac8ef54d6afd9fd_kitchencounter.glb.txt', function (gltf) {
+             var cabinet = gltf.scene.children[0];
+             cabinet.scale.set(2,2,2 )
+             base.add(gltf.scene);
+             const box = new THREE.Box3().setFromObject(gltf.scene);
+            //  const size = new THREE.Vector3();
+            //  const old_height = box.getSize(size).y;
+            //  const old_width = box.getSize(size).x;
+            //  const ratio = old_width / old_height
+            //  const height = container.clientWidth * 0.6 / ratio;
+            //  console.log(height)
+             camera.aspect = window.innerWidth / window.innerHeight;
+             camera.updateProjectionMatrix();    
+             renderer.setSize(window.innerWidth/2, (window.innerWidth / ratio)/2);
+        
         });
 
+        
         var plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), -2);
         var raycaster = new THREE.Raycaster();
         var mouse = new THREE.Vector2();
