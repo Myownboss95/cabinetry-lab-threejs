@@ -11,6 +11,7 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/l
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(60, width/height, 1, 1000);
         camera.position.set(0, 1, 5);
+        
         // responsiveness
          window.addEventListener('resize', () => {
             width = window.innerWidth
@@ -55,8 +56,8 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/l
             //  const height = container.clientWidth * 0.6 / ratio;
             //  console.log(height)
              camera.aspect = window.innerWidth / window.innerHeight;
+             renderer.setSize(window.innerWidth, window.innerWidth );
              camera.updateProjectionMatrix();    
-             renderer.setSize(window.innerWidth/2, (window.innerWidth / ratio)/2);
         
         });
 
@@ -73,6 +74,12 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/l
             raycaster.setFromCamera(mouse, camera);
             raycaster.ray.intersectPlane(plane, pointOfIntersection);
             base.lookAt(pointOfIntersection);
+        }
+        // canvas.addEventListener("mouseout", onMouseOut, false);
+        function onMouseOut(event) {
+            //    camera.aspect = window.innerWidth / window.innerHeight;
+            //  renderer.setSize(window.innerWidth, window.innerWidth );
+            //  camera.updateProjectionMatrix();
         }
 
         // renderer.setAnimationLoop(() => {
