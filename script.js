@@ -12,24 +12,60 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/l
         var camera = new THREE.PerspectiveCamera(60, width/height, 1, 1000);
         camera.position.set(0, 1, 5);
         
-        // responsiveness
-         window.addEventListener('resize', () => {
-            width = window.innerWidth
-            height = window.innerHeight
-            camera.aspect = width / height
-            camera.updateProjectionMatrix()
-            renderer.setSize(window.innerWidth, window.innerHeight)
-            renderer.render(scene, camera)
-         })
         
+       
         var renderer = new THREE.WebGLRenderer({
             antialias: true,
             alpha: true,
         });
+renderer.setSize(window.innerWidth, window.innerHeight);
+function render() {
+    if (resize(renderer)) {
+        const canvas = renderer.domElement;
+        camera.aspect = canvas.width / canvas.height;
+        camera.updateProjectionMatrix();
+    }
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+}
+
+function resize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.width;
+    const height = canvas.height;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+        renderer.setSize(width, height, false);
+    }
+    return needResize;
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+window.addEventListener('resize', onWindowResize, false);
+
+// Initial call to resize the renderer
+onWindowResize();
+
+// Start rendering
+render();
+        // responsiveness
+        //  window.addEventListener('resize', () => {
+        //     width = window.innerWidth
+        //     height = window.innerHeight
+        //     renderer.setSize(width, height)
+        //     camera.aspect = width / height
+        //     camera.updateProjectionMatrix()
+        //     renderer.render(scene, camera)
+        //  })
+        
         // renderer.setClearColor(0x000000, 0);
         var canvas = renderer.domElement;
         var container = document.getElementById('container'); // Get the container div element
-        // renderer.setSize(container.clientWidth * 0.8, container.clientHeight * 0.8);
         container.appendChild(canvas); 
         
         var light = new THREE.DirectionalLight(0xffffff, 0.5);
