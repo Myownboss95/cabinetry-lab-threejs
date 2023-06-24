@@ -64,7 +64,7 @@ loader.load(
 //new resizing
 const onWindowResize = (model, length) => {
     if (model && length) {
-         console.log(model)
+         console.log(window.innerWidth)
     // Rest of the code inside onWindowResize function
     const sizeMappings = [
       { maxSize: 576, desiredSize: 1.5 },    // Extra Small (XS)
@@ -77,7 +77,8 @@ const onWindowResize = (model, length) => {
     const { desiredSize } = sizeMappings.find(({ maxSize }) => window.innerWidth <= maxSize);
 
     const resizeScaleFactor = desiredSize / length;
-    model.scale.set(resizeScaleFactor, resizeScaleFactor, resizeScaleFactor);
+        model.scale.set(resizeScaleFactor, resizeScaleFactor, resizeScaleFactor);
+        
   }
 
   camera.aspect = window.innerWidth / window.innerHeight;
