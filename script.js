@@ -82,9 +82,13 @@ render();
         const loader = new GLTFLoader().setPath('https://uploads-ssl.webflow.com/646dc20061f77e68c17a9199/');
          loader.load('648d48e9319e67c67e9722dc_cabinet_assets.gltf.txt', function (gltf) {
              var cabinet = gltf.scene.children[0];
-             cabinet.scale.set(2,2,2 )
-             base.add(gltf.scene);
              const box = new THREE.Box3().setFromObject(gltf.scene);
+             let modelSize = new THREE.Vector3();
+             const desiredSize = 1.5; // The desired size you want to set
+            const scaleFactor = desiredSize / modelSize.length();
+            //  cabinet.scale.set(2,2,2 )
+             model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+             base.add(gltf.scene);
             //  const size = new THREE.Vector3();
             //  const old_height = box.getSize(size).y;
             //  const old_width = box.getSize(size).x;
