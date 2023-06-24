@@ -44,10 +44,12 @@ loader.load(
     const box = new THREE.Box3().setFromObject(gltf.scene);
     let modelSize = new THREE.Vector3();
     box.getSize(modelSize);
-    const desiredSize = 5.5; // The desired size you want to set
-    const scaleFactor = desiredSize / modelSize.length();
+      const desiredSize = 5.5; // The desired size you want to set
+      let length = modelSize.length();
+    const scaleFactor = desiredSize / length;
     //  cabinet.scale.set(2,2,2 )
-    model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+      model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+      onWindowResize(model, length)
     console.log(scaleFactor);
     base.add(model);
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -60,11 +62,23 @@ loader.load(
 );
 
 //new resizing
-function onWindowResize() {
-//   camera.aspect = window.innerWidth / window.innerHeight;
-//   camera.updateProjectionMatrix();
-//   renderer.setSize(window.innerWidth, window.innerHeight);
-    // console.log(rendererWidth)
+const onWindowResize = (model, length) => {
+    
+const sizeMappings = [
+  { maxSize: 576, desiredSize: 2 },    // Extra Small (XS)
+  { maxSize: 768, desiredSize: 2 },     // Small (SM)
+  { maxSize: 992, desiredSize: 5 },     // Medium (MD)
+  { maxSize: 1200, desiredSize: 7 },    // Large (LG)
+  { maxSize: Infinity, desiredSize: 8 } // Extra Large (XL)
+];
+
+const { desiredSize } = sizeMappings.find(({ maxSize }) => window.innerWidth <= maxSize);
+
+  const resizeScaleFactor = desiredSize / length;
+  model.scale.set(resizeScaleFactor, resizeScaleFactor, resizeScaleFactor);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 window.addEventListener("resize", onWindowResize, false);
