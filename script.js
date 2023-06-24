@@ -44,7 +44,7 @@ loader.load(
     const box = new THREE.Box3().setFromObject(gltf.scene);
     let modelSize = new THREE.Vector3();
     box.getSize(modelSize);
-    const desiredSize = 1.5; // The desired size you want to set
+    const desiredSize = 5.5; // The desired size you want to set
     const scaleFactor = desiredSize / modelSize.length();
     //  cabinet.scale.set(2,2,2 )
     model.scale.set(scaleFactor, scaleFactor, scaleFactor);
@@ -53,7 +53,7 @@ loader.load(
     camera.aspect = window.innerWidth / window.innerHeight;
     const rendererWidth = modelSize.x * (window.innerWidth / window.innerHeight);
     const rendererHeight = modelSize.y * (window.innerWidth / window.innerHeight);
-      renderer.setSize(rendererWidth, rendererHeight);
+      renderer.setSize(window.innerWidth, window.innerHeight);
     
     camera.updateProjectionMatrix();
   }
