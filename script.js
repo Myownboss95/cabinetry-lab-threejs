@@ -9,8 +9,8 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/l
          let height = window.innerHeight
         //  const gui = new dat.GUI()
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(60, width/height, 1, 1000);
-        camera.position.set(0, 1, 5);
+        var camera = new THREE.PerspectiveCamera(45, width/height, 1, 1000);
+        camera.position.set(0, 1.2, 5);
         
         
        
@@ -80,7 +80,7 @@ render();
         scene.add(base);
 
         const loader = new GLTFLoader().setPath('https://uploads-ssl.webflow.com/646dc20061f77e68c17a9199/');
-         loader.load('649131074ac8ef54d6afd9fd_kitchencounter.glb.txt', function (gltf) {
+         loader.load('64961e2c29540d0dbb40e0b7_cabinet2.glb.txt', function (gltf) {
              var cabinet = gltf.scene.children[0];
              cabinet.scale.set(2,2,2 )
              base.add(gltf.scene);
