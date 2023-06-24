@@ -50,8 +50,8 @@ loader.load(
     model.scale.set(scaleFactor, scaleFactor, scaleFactor);
     console.log(scaleFactor);
     base.add(model);
-    const rendererWidth = modelSize.x * desiredScale;
-    const rendererHeight = modelSize.y * desiredScale;
+    const rendererWidth = modelSize.x * desiredSize;
+    const rendererHeight = modelSize.y * desiredSize;
     camera.aspect = window.innerWidth / window.innerHeight;
       renderer.setSize(rendererWidth, rendererHeight);
     
@@ -71,9 +71,6 @@ window.addEventListener("resize", onWindowResize, false);
 
 // Initial call to resize the renderer
 onWindowResize();
-
-// Start rendering
-render();
 
 var plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), -2);
 var raycaster = new THREE.Raycaster();
