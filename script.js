@@ -50,9 +50,9 @@ loader.load(
     model.scale.set(scaleFactor, scaleFactor, scaleFactor);
     console.log(scaleFactor);
     base.add(model);
-    const rendererWidth = modelSize.x * desiredSize;
-    const rendererHeight = modelSize.y * desiredSize;
     camera.aspect = window.innerWidth / window.innerHeight;
+    const rendererWidth = modelSize.x * (window.innerWidth / window.innerHeight);
+    const rendererHeight = modelSize.y * (window.innerWidth / window.innerHeight);
       renderer.setSize(rendererWidth, rendererHeight);
     
     camera.updateProjectionMatrix();
