@@ -49,8 +49,8 @@ loader.load(
     const scaleFactor = desiredSize / length;
     //  cabinet.scale.set(2,2,2 )
       model.scale.set(scaleFactor, scaleFactor, scaleFactor);
-      onWindowResize(model, length)
-    console.log(scaleFactor);
+      onWindowResize(gltf.scene, length)
+    // console.log(gltf.scene);
     base.add(model);
     camera.aspect = window.innerWidth / window.innerHeight;
     const rendererWidth = modelSize.x * (window.innerWidth / window.innerHeight);
@@ -63,19 +63,23 @@ loader.load(
 
 //new resizing
 const onWindowResize = (model, length) => {
-    
-const sizeMappings = [
-  { maxSize: 576, desiredSize: 2 },    // Extra Small (XS)
-  { maxSize: 768, desiredSize: 2 },     // Small (SM)
-  { maxSize: 992, desiredSize: 5 },     // Medium (MD)
-  { maxSize: 1200, desiredSize: 7 },    // Large (LG)
-  { maxSize: Infinity, desiredSize: 8 } // Extra Large (XL)
-];
+    if (model && length) {
+         console.log(model)
+    // Rest of the code inside onWindowResize function
+    const sizeMappings = [
+      { maxSize: 576, desiredSize: 1.5 },    // Extra Small (XS)
+      { maxSize: 768, desiredSize: 1.5 },    // Small (SM)
+      { maxSize: 992, desiredSize: 4 },    // Medium (MD)
+      { maxSize: 1200, desiredSize: 8 },  // Large (LG)
+      { maxSize: Infinity, desiredSize: 8 } // Extra Large (XL)
+    ];
 
-const { desiredSize } = sizeMappings.find(({ maxSize }) => window.innerWidth <= maxSize);
+    const { desiredSize } = sizeMappings.find(({ maxSize }) => window.innerWidth <= maxSize);
 
-  const resizeScaleFactor = desiredSize / length;
-  model.scale.set(resizeScaleFactor, resizeScaleFactor, resizeScaleFactor);
+    const resizeScaleFactor = desiredSize / length;
+    model.scale.set(resizeScaleFactor, resizeScaleFactor, resizeScaleFactor);
+  }
+
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
