@@ -80,7 +80,7 @@ render();
         scene.add(base);
 
         const loader = new GLTFLoader().setPath('https://uploads-ssl.webflow.com/646dc20061f77e68c17a9199/');
-         loader.load('64961e2c29540d0dbb40e0b7_cabinet2.glb.txt', function (gltf) {
+         loader.load('648d48e9319e67c67e9722dc_cabinet_assets.gltf.txt', function (gltf) {
              var cabinet = gltf.scene.children[0];
              cabinet.scale.set(2,2,2 )
              base.add(gltf.scene);
