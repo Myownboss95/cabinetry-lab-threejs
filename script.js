@@ -98,9 +98,11 @@ render();
             //  const ratio = old_width / old_height
             //  const height = container.clientWidth * 0.6 / ratio;
             //  console.log(height)
-             camera.aspect = window.innerWidth / window.innerHeight;
-             renderer.setSize(window.innerWidth, window.innerWidth );
-             camera.updateProjectionMatrix();    
+            const rendererWidth = modelSize.x * desiredScale;
+            const rendererHeight = modelSize.y * desiredScale;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            renderer.setSize(rendererWidth, rendererHeight );
+            camera.updateProjectionMatrix();    
         
         });
 
