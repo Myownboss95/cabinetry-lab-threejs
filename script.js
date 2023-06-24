@@ -82,6 +82,7 @@ render();
         const loader = new GLTFLoader().setPath('https://uploads-ssl.webflow.com/646dc20061f77e68c17a9199/');
          loader.load('648d48e9319e67c67e9722dc_cabinet_assets.gltf.txt', function (gltf) {
              var cabinet = gltf.scene.children[0];
+             const model = gltf.scene;
              const box = new THREE.Box3().setFromObject(gltf.scene);
              let modelSize = new THREE.Vector3();
              const desiredSize = 1.5; // The desired size you want to set
