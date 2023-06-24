@@ -70,8 +70,8 @@ const onWindowResize = (model, length) => {
       { maxSize: 576, desiredSize: 1.5 },    // Extra Small (XS)
       { maxSize: 768, desiredSize: 1.5 },    // Small (SM)
       { maxSize: 992, desiredSize: 4 },    // Medium (MD)
-      { maxSize: 1200, desiredSize: 4 },  // Large (LG)
-      { maxSize: Infinity, desiredSize: 4 } // Extra Large (XL)
+      { maxSize: 1200, desiredSize: 5 },  // Large (LG)
+      { maxSize: Infinity, desiredSize: 5 } // Extra Large (XL)
     ];
 
     const { desiredSize } = sizeMappings.find(({ maxSize }) => window.innerWidth <= maxSize);
