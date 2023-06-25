@@ -67,9 +67,9 @@ const onWindowResize = (model, length) => {
          console.log(window.innerWidth)
     // Rest of the code inside onWindowResize function
     const sizeMappings = [
-      { maxSize: 0, desiredSize: 2 },
-        { maxSize: 576, desiredSize: 3.5 },    // Extra Small (XS)
-      { maxSize: 768, desiredSize: 3.5 },    // Small (SM)
+      { maxSize: 0, desiredSize: 1 },
+        { maxSize: 576, desiredSize: 1 },    // Extra Small (XS)
+      { maxSize: 768, desiredSize: 1 },    // Small (SM)
       { maxSize: 992, desiredSize: 4 },    // Medium (MD)
       { maxSize: 1200, desiredSize: 5 },  // Large (LG)
       { maxSize: Infinity, desiredSize: 5 } // Extra Large (XL)
