@@ -77,8 +77,9 @@ const onWindowResize = (model, length) => {
 
     const { desiredSize } = sizeMappings.find(({ maxSize }) => window.innerWidth <= maxSize);
 
-    const resizeScaleFactor = desiredSize / length;
-        model.scale.set(resizeScaleFactor, resizeScaleFactor, resizeScaleFactor);
+        const resizeScaleFactor = desiredSize / length;
+        console.log(resizeScaleFactor)
+        model.scale.set(1, 1, 1);
         
   }
 
