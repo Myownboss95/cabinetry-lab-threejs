@@ -37,7 +37,7 @@ const loader = new GLTFLoader().setPath(
   "https://uploads-ssl.webflow.com/646dc20061f77e68c17a9199/"
 );
 loader.load(
-  "649732aac1e1ecb76cd3b07b_cabinet3.gltf.txt",
+  "64961e2c29540d0dbb40e0b7_cabinet2.glb.txt",
   function (gltf) {
     var cabinet = gltf.scene.children[0];
     const model = gltf.scene;
