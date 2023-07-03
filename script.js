@@ -86,7 +86,7 @@ const onWindowResize = (model, length) => {
   }
 
   camera.aspect = window.innerWidth / window.innerHeight;
-  
+  camera.updateProjectionMatrix();
     
     if (window.innerWidth < 410) {
         var canvas = document.querySelector('canvas');
@@ -96,8 +96,7 @@ const onWindowResize = (model, length) => {
         canvas = document.querySelector('canvas');
         canvas.classList.remove('canvas-mobile');
     }
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 window.addEventListener("resize", onWindowResize, false);
